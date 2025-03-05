@@ -152,7 +152,7 @@ WHERE loan_status = 'Fully Paid' OR loan_status = 'Current'
 # Tỷ lệ khoản vay tốt trên toàn bộ các khoản vay: 86.18%
 SELECT
 	ROUND(COUNT(CASE WHEN loan_status = 'Fully Paid' OR loan_status = 'Current' THEN id END) / COUNT(id) * 100, 2) 
-    AS Good_loan_percentage
+    	AS Good_loan_percentage
 FROM bank_loan_data
 ;
 
@@ -178,7 +178,7 @@ WHERE loan_status = 'Charged Off'
 # Tỷ lệ khoản vay xấu trên toàn bộ các khoản vay: 13.82%
 SELECT
 	ROUND(COUNT(CASE WHEN loan_status = 'Charged Off' THEN id END) / COUNT(id) * 100, 2) 
-    AS Bad_loan_percentage
+    	AS Bad_loan_percentage
 FROM bank_loan_data
 ;
 
@@ -197,7 +197,7 @@ WHERE loan_status = 'Charged Off'
 
 # PHÂN TÍCH THEO LOAN STATUS - TÌNH TRẠNG KHOẢN VAY
 SELECT loan_status, 
-	   COUNT(id) AS Total_Loan_Applications, 
+       COUNT(id) AS Total_Loan_Applications, 
        SUM(loan_amount) AS Total_Funded_Amount,
        SUM(total_payment) AS Total_Amount_Received,
        ROUND(AVG(int_rate) * 100, 2) AS AVG_Interest_Rate,
@@ -208,7 +208,7 @@ ORDER BY loan_status DESC
 ;
 
 SELECT loan_status, 
-	   COUNT(id) AS MTD_Applications, 
+       COUNT(id) AS MTD_Applications, 
        SUM(loan_amount) AS MTD_Funded_Amount,
        SUM(total_payment) AS MTD_Amount_Received
 FROM bank_loan_data
@@ -226,8 +226,8 @@ FROM bank_loan_data
 SELECT 
 	MONTH(issue_date) AS Month_Number,
 	MONTHNAME(issue_date) AS Month_Name,
-    COUNT(id) AS Total_Loan_Applications,
-    SUM(loan_amount) AS Total_Funded_Amount,
+    	COUNT(id) AS Total_Loan_Applications,
+    	SUM(loan_amount) AS Total_Funded_Amount,
 	SUM(total_payment) AS Total_Amount_Received
 FROM bank_loan_data
 GROUP BY Month_Number, Month_Name
@@ -237,8 +237,8 @@ ORDER BY Month_Number
 # Theo nơi chốn (tiểu bang Mỹ):
 SELECT 
 	address_state,
-    COUNT(id) AS Total_Loan_Applications,
-    SUM(loan_amount) AS Total_Funded_Amount,
+    	COUNT(id) AS Total_Loan_Applications,
+    	SUM(loan_amount) AS Total_Funded_Amount,
 	SUM(total_payment) AS Total_Amount_Received
 FROM bank_loan_data
 GROUP BY address_state
@@ -248,8 +248,8 @@ ORDER BY Total_Funded_Amount DESC
 # Theo kỳ hạn khoản vay (36 tháng hoặc 60 tháng):
 SELECT 
 	term,
-    COUNT(id) AS Total_Loan_Applications,
-    SUM(loan_amount) AS Total_Funded_Amount,
+    	COUNT(id) AS Total_Loan_Applications,
+    	SUM(loan_amount) AS Total_Funded_Amount,
 	SUM(total_payment) AS Total_Amount_Received
 FROM bank_loan_data
 GROUP BY term
@@ -259,8 +259,8 @@ ORDER BY term
 # Theo số năm đi làm:
 SELECT 
 	emp_length,
-    COUNT(id) AS Total_Loan_Applications,
-    SUM(loan_amount) AS Total_Funded_Amount,
+    	COUNT(id) AS Total_Loan_Applications,
+    	SUM(loan_amount) AS Total_Funded_Amount,
 	SUM(total_payment) AS Total_Amount_Received
 FROM bank_loan_data
 GROUP BY emp_length
@@ -270,8 +270,8 @@ ORDER BY Total_Loan_Applications DESC
 # Theo mục đích:
 SELECT 
 	purpose,
-    COUNT(id) AS Total_Loan_Applications,
-    SUM(loan_amount) AS Total_Funded_Amount,
+    	COUNT(id) AS Total_Loan_Applications,
+    	SUM(loan_amount) AS Total_Funded_Amount,
 	SUM(total_payment) AS Total_Amount_Received
 FROM bank_loan_data
 GROUP BY purpose
@@ -281,8 +281,8 @@ ORDER BY Total_Loan_Applications DESC
 # Theo tình trạng sở hữu nhà
 SELECT 
 	home_ownership,
-    COUNT(id) AS Total_Loan_Applications,
-    SUM(loan_amount) AS Total_Funded_Amount,
+    	COUNT(id) AS Total_Loan_Applications,
+    	SUM(loan_amount) AS Total_Funded_Amount,
 	SUM(total_payment) AS Total_Amount_Received
 FROM bank_loan_data
 GROUP BY home_ownership
